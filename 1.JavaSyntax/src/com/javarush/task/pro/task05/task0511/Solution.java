@@ -28,6 +28,6 @@ public class Solution {
             multiArray[i] = new int[input.nextInt()];
             System.out.println(Arrays.toString(multiArray[i]));
         }
-        System.out.println(Arrays.toString(multiArray));
+        System.out.println(Arrays.deepToString(multiArray));
     }
 }
