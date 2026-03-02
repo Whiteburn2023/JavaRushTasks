@@ -1,7 +1,6 @@
 package com.javarush.task.pro.task12.task1221;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /* 
 Дженерики и студенты
@@ -17,7 +16,7 @@ public class UniversityDepartment {
         printStudentNames(students);
     }
 
-    public static void printStudentNames(List<Student> students) {
+    public static void printStudentNames(ArrayList<Student> students) {
         for (int i = 0; i < students.size(); i++) {
             System.out.println(students.get(i).getName());
         }
