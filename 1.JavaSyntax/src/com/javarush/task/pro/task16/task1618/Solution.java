@@ -1,6 +1,8 @@
 package com.javarush.task.pro.task16.task1618;
 
-import java.time.*;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 /* 
 Лишь бы не запутаться
@@ -19,9 +21,11 @@ public class Solution {
     }
 
     static LocalDateTime changeZone(LocalDateTime fromDateTime, ZoneId fromZone, ZoneId toZone) {
-        ZonedDateTime zoneId1 = ZonedDateTime.of(fromDateTime, fromZone);
-        ZonedDateTime newTime = zoneId1.withZoneSameLocal(toZone);
-        LocalDateTime localDateTime = newTime.toLocalDateTime();
+        ZonedDateTime fromZonedDateTime = fromDateTime.atZone(fromZone);
+        ZonedDateTime toZonedDateTime = fromZonedDateTime.withZoneSameInstant(toZone);
+
+        LocalDateTime localDateTime = toZonedDateTime.toLocalDateTime();
+
         return localDateTime;
     }
 }
