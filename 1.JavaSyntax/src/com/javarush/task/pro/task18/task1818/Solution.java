@@ -1,7 +1,6 @@
 package com.javarush.task.pro.task18.task1818;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.Month;
 import java.util.stream.Stream;
 
@@ -27,8 +26,10 @@ public class Solution {
     }
 
     public static boolean hasExpiredProduct(Stream<Product> productStream) {
-        //напишите тут ваш код
-        return productStream.anyMatch(i -> LocalDate.now() - i.getExpirationDate()));
+        LocalDate current = LocalDate.now();
+        boolean expired = productStream
+                .anyMatch(p ->  p.getExpirationDate().isBefore(current));
+        return expired;
     }
 }
 
