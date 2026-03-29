@@ -13,14 +13,15 @@ public class Solution {
         Scanner scanner = new Scanner(System.in);
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(scanner.nextLine()));
 
-        while (scanner.hasNext()){
+        do {
             String str = scanner.nextLine();
             if (str.equalsIgnoreCase("exit")){
                 bufferedWriter.write(str);
                 break;
             }
             bufferedWriter.write(str);
-        }
+            bufferedWriter.newLine();
+        } while (scanner.hasNext());
 
         bufferedWriter.close();
 
