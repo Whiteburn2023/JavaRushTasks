@@ -3,10 +3,7 @@ package com.javarush.task.task13.task1326;
 import javax.imageio.IIOException;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /* 
 Сортировка четных чисел из файла
@@ -14,22 +11,23 @@ import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        String src = "C:\\OTUS\\JavaRushTasks\\2.txt";
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(src))) {
-            int ch;
-            while ((ch = inputStreamReader.read()) != -1){
-                if (ch >= '0' && ch <= '9') {
-                    int digit = ch -'0';
-                    if (digit % 2 == 0) {
-                        System.out.println((char) ch);
-                    }
+        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+             FileInputStream fileInputStream = new FileInputStream(console.readLine());
+             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream))){
+
+            List<Integer> list = new ArrayList<>();
+
+            while (reader.ready()){
+                String string = reader.readLine();
+                int number = Integer.parseInt(string);
+                if (number % 2 == 0){
+                    list.add(number);
                 }
             }
+            list.sort(Comparator.naturalOrder());
+            list.forEach(System.out::println);
         }
-
-
-
 
     }
 }
