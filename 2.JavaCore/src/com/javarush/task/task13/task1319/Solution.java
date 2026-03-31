@@ -10,20 +10,18 @@ import java.util.Scanner;
 public class Solution {
     public static void main(String[] args) throws IOException {
 
-        Scanner scanner = new Scanner(System.in);
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(scanner.nextLine()));
-
-        do {
-            String str = scanner.nextLine();
-            if (str.equalsIgnoreCase("exit")){
+        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(console.readLine()))
+        ) {
+            String str;
+            while (true) {
+                str = console.readLine();
                 bufferedWriter.write(str);
-                break;
+                bufferedWriter.newLine();
+                if (str.equals("exit")) {
+                    return;
+                }
             }
-            bufferedWriter.write(str);
-            bufferedWriter.newLine();
-        } while (scanner.hasNext());
-
-        bufferedWriter.close();
-
+        }
     }
 }

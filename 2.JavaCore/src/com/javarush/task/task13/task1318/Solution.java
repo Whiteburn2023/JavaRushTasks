@@ -12,17 +12,14 @@ import java.util.Scanner;
 public class Solution {
     public static void main(String[] args) throws Exception {
 
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-             FileInputStream fileInputStream = new FileInputStream(bufferedReader.readLine());
-             Scanner scanner = new Scanner(fileInputStream)) {
-            StringBuilder stringBuilder = new StringBuilder();
-            while (scanner.hasNext()){
-                stringBuilder.append(scanner.nextLine()).append("\n");
+        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+             FileInputStream fileInputStream = new FileInputStream(console.readLine());
+             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream))
+        ) {
+            while (bufferedReader.ready()) {
+                String string = bufferedReader.readLine();
+                System.out.println(string);
             }
-            System.out.println(stringBuilder);
         }
-
-
-
     }
 }
