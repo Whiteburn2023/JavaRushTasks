@@ -26,7 +26,7 @@ public class Solution {
                     hen = new UkrainianHen();
                     break;
                 case Country.MOLDOVA:
-                    hen = new MoldovaHen();
+                    hen = new MoldovanHen();
                     break;
             }
             return hen;
