@@ -28,6 +28,7 @@ public class Solution {
                     String productName = args[1];
                     String price = args[2];
                     String quantity = args[3];
+                    //%n%-8.8s%-30.30s%-8.8s%-4.4s
 
                     String format = String.format("%8d%-30.30s%-8.8s%-4.4s", maxId, productName, price, quantity);
                     writer.newLine();
