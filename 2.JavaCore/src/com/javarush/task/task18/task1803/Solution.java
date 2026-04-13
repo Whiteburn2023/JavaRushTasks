@@ -1,16 +1,29 @@
 package com.javarush.task.task18.task1803;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /* 
 Самые частые байты
 */
 
 public class Solution {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
+        byte[] bytes = Files.readAllBytes(Path.of(new Scanner(System.in).nextLine()));
+        Map<Byte, Integer> map = IntStream.range(0, bytes.length)
+                .boxed().collect(Collectors.toMap(i -> bytes[i], i -> 1, Integer::sum));
+        map.entrySet().stream()
+                .filter(pair -> pair.getValue().equals(Collections.max(map.values())))
+                .forEach(pair -> System.out.print(pair.getKey() + " "));
+    }
+
+
+
+    public static void main1(String[] args) throws Exception {
         try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
              FileInputStream fileInputStream = new FileInputStream(console.readLine())
         ) {
