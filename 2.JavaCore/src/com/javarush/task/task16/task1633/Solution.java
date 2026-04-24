@@ -10,11 +10,11 @@ public class Solution {
     public static void main(String[] args) {
         TestedThread commonThread = new TestedThread(handler);
 
-//        TestedThread threadA = new TestedThread(handler);
-//        TestedThread threadB = new TestedThread(handler);
-
         Thread threadA = new Thread(commonThread, "Нить 1");
         Thread threadB = new Thread(commonThread, "Нить 2");
+
+//        threadA.setUncaughtExceptionHandler(handler);
+//        threadB.setUncaughtExceptionHandler(handler);
 
         threadA.start();
         threadB.start();
