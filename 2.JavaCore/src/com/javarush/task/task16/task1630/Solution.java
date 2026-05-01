@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 
 /* 
 Последовательный вывод файлов
@@ -13,7 +14,13 @@ public class Solution {
     public static String firstFileName;
     public static String secondFileName;
 
-    //напишите тут ваш код
+    static {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            firstFileName = reader.readLine();
+            secondFileName = reader.readLine();
+        } catch (IOException e) {
+        }
+    }
 
     public static void main(String[] args) throws InterruptedException {
         systemOutPrintln(firstFileName);
@@ -21,10 +28,7 @@ public class Solution {
     }
 
     public static void systemOutPrintln(String fileName) throws InterruptedException {
-        //ReadFileInterface f = new ReadFileThread();
-//        f.setFileName(fileName);
-//        f.start();
-//        System.out.println(f.getFileContent());
+
     }
 
     public interface ReadFileInterface {
@@ -38,5 +42,6 @@ public class Solution {
         void start();
     }
 
-    //напишите тут ваш код
+
+    //public static ReadFileThread readFileThread = new Thread();
 }
