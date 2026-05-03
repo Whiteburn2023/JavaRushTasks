@@ -8,29 +8,25 @@ import java.io.*;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-             ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in))){
             String fileName1 = console.readLine();
             String fileName2 = console.readLine();
             String fileName3 = console.readLine();
 
             try (FileInputStream fis = new FileInputStream(fileName1);
-                 FileOutputStream fos1 = new FileOutputStream(fileName2);
-                 FileOutputStream fos2 = new FileOutputStream(fileName3)) {
+                 FileOutputStream writeFileOne = new FileOutputStream(fileName2);
+                 FileOutputStream writeFileTwo = new FileOutputStream(fileName3)) {
 
-                byte[] buffer = new byte[8192];
-                int bytesRead;
-                while ((bytesRead = fis.read(buffer)) != -1) {
-                    baos.write(buffer, 0, bytesRead);
+                int half = (fis.available() + 1) / 2;
+                int count = 0;
+                while (fis.available() > 0){
+                    if (count < half){
+                        writeFileOne.write(fis.read());
+                        count++;
+                    } else {
+                        writeFileTwo.write(fis.read());
+                    }
                 }
-
-                byte[] allBytes = baos.toByteArray();
-                int length = allBytes.length;
-                int half = (length + 1) / 2;
-
-                fos1.write(allBytes, 0, half);
-                fos2.write(allBytes, half, length - half);
-
             }
         }
     }

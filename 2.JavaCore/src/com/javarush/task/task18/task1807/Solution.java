@@ -12,11 +12,11 @@ import java.io.InputStreamReader;
 public class Solution {
     public static void main(String[] args) throws IOException {
         try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        FileInputStream fis = new FileInputStream(console.readLine())){
+             FileInputStream fis = new FileInputStream(console.readLine())) {
             int count = 0;
-            int data;
-            while((data = fis.read()) != -1){
-                if (data == ','){
+            while ((fis.available() > 0)) {
+                int data = fis.read();
+                if ((char) data == ',') {
                     count++;
                 }
             }
