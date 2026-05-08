@@ -2,12 +2,13 @@ package com.javarush.task.task36.task3608.model;
 
 import com.javarush.task.task36.task3608.bean.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModelData {
 
-    private List<User> users;
     private User activeUser;
+    private List<User> users = new ArrayList<>();
     private boolean displayDeletedUserList;
 
     public List<User> getUsers() {
