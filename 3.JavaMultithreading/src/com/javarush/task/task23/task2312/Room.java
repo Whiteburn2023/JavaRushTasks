@@ -93,6 +93,25 @@ public class Room {
         //Рисуем все кусочки змеи
         //Рисуем мышь
         //Выводим все это на экран
+
+        int[][] field = new int[getHeight()][getWidth()];
+        field[snake.getY()][snake.getX()] = 2;
+        for (int i = 1; i < snake.getSections().size(); i++){
+            int y = snake.getSections().get(i).getY();
+            int x = snake.getSections().get(i).getX();
+            field[y][x] = 1;
+        }
+        field[mouse.getY()][mouse.getX()] = 3;
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[i].length; j++) {
+                if (field[i][j] == 1) System.out.print("x");
+                else if (field[i][j] == 2) System.out.print("X");
+                else if (field[i][j] == 3) System.out.print("^");
+                else System.out.print(".");
+            }
+            System.out.println();
+        }
+
     }
 
     public void eatMouse() {
@@ -118,14 +137,16 @@ public class Room {
         long lengthSnake = snake.getSections().size();
         long pause = 0;
 
+
         if (lengthSnake >= 1 && lengthSnake < 11) {
             pause = 500 - ((lengthSnake - 1) * 20);
-        } else if (lengthSnake >= 11 && lengthSnake <= 15){
+        } else if (lengthSnake >= 11 && lengthSnake <= 15) {
             pause = 300 - ((lengthSnake - 11) * 20);
-        } else if (lengthSnake > 15){
+        } else if (lengthSnake > 15) {
             pause = 200;
         }
         Thread.sleep(pause);
+
 
     }
 }
