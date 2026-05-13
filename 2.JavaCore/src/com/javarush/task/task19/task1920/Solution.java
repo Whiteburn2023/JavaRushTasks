@@ -3,9 +3,8 @@ package com.javarush.task.task19.task1920;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.Map;
-import java.util.Optional;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /* 
@@ -35,16 +34,18 @@ public class Solution {
 //        }
 //    }
     public static void main(String[] args) throws IOException {
-        Map<String, Double> map = new TreeMap<>();
-
-        map = Files.readAllLines(Paths.get(args[0])).stream()
+        Map<String, Double> map = Files.readAllLines(Paths.get(args[0])).stream()
                 .collect(Collectors.toMap(s -> s.split(" ")[0], s -> Double.parseDouble(s.split(" ")[1]), (a, b) -> Double.sum(a, b)));
-        String string = map.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
-                .orElse(null);
 
-        System.out.println(string);
+        map.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(Collections.max(map.values())))
+                .forEach(entry -> System.out.println(entry.getKey()));
+
+
+//                .max(Map.Entry.comparingByValue())
+//                        .map(Map.Entry::getKey)
+//                        .orElse(null);
+//        System.out.println(string);
 
 
 //                .map(str -> str.split(" "))
