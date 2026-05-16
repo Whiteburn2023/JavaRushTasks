@@ -1,4 +1,4 @@
 -- Write your code here:
-select id, employee.name, employee.salary, employee.department from employee
+select * from employee
 where salary <> 3200
 ;

@@ -17,10 +17,10 @@ public class Solution {
 
                 while (reader.ready()){
                     String[] split = reader.readLine().split(" ");
-                    for (int i = 0; i < split.length; i++) {
+                    for (String s : split) {
                         try {
-                            writer.write(Integer.parseInt(split[i]) + " ");
-                        } catch (NumberFormatException e) {
+                            writer.write(Integer.parseInt(s) + " ");
+                        } catch (NumberFormatException ignored) {
                         }
                     }
                 }

@@ -8,7 +8,7 @@ CREATE TABLE employee
     `city`     VARCHAR(200) not null
 );
 insert into employee (id, position, salary, city)
-values (1, 'developer' 6000, 'London'),
+values (1, 'developer', 6000, 'London'),
        (3, 'hr', 2500, 'Berlin'),
        (4, 'manager', 4300, 'London'),
        (2, 'manager', 5000, 'Warsaw'),
