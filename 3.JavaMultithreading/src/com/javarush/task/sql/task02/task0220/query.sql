@@ -1,15 +1,10 @@
 -- Write your code here:
-select distinct name, cars.prod_year,
-       case
-           when prod_year = 2020
-               then 'new'
-           when prod_year = 2021
-               then 'newer'
-           when prod_year = 2022
-               then 'even newer'
-           else ''
-           END
-
+select distinct name,
+       case prod_year
+           when 2020 then 'new'
+           when 2021 then 'newer'
+           when 2022 then 'even newer'
+           END AS prod_year
 
 from cars
 ;

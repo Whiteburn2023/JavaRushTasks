@@ -34,18 +34,30 @@ public class Solution {
                     listTwo.add(reader2.readLine());
                 }
 
-                for (String str1 : listOne) {
-                    for (String str2 : listTwo) {
-                        if (str1.equals(str2)) {
-                            lines.add(new LineItem(Type.SAME, str1));
-                            break;
-                        } else if (!str1.contains(str2)) {
-                            lines.add(new LineItem(Type.REMOVED, str1));
-                            break;
-                        } else if (!str2.contains(str1)) {
-                            lines.add(new LineItem(Type.ADDED, str2));
-                        }
+                while (!listOne.isEmpty() && !listTwo.isEmpty()) {
+                    if (listOne.get(0).equals(listTwo.get(0))) {
+                        lines.add(new LineItem(Type.SAME, listOne.get(0)));
+                        listOne.remove(0);
+                        listTwo.remove(0);
+
+                    } else if (listTwo.size() > 1 && listOne.get(0).equals(listTwo.get(1))) {
+                        lines.add(new LineItem(Type.ADDED, listTwo.get(0)));
+                        listTwo.remove(0);
+
+                    } else if (listOne.size() > 1 && listOne.get(1).equals(listTwo.get(0))) {
+                        lines.add(new LineItem(Type.REMOVED, listOne.get(0)));
+                        listOne.remove(0);
+
+                    } else {
+                        lines.add(new LineItem(Type.REMOVED, listOne.get(0)));
+                        listOne.remove(0);
                     }
+                }
+                if (!listOne.isEmpty()){
+                    lines.add(new LineItem(Type.REMOVED, listOne.remove(0)));
+                }
+                if (!listTwo.isEmpty()){
+                    lines.add(new LineItem(Type.ADDED, listTwo.remove(0)));
                 }
             }
 
