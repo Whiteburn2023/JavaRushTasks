@@ -11,13 +11,13 @@ public class Solution {
         System.out.println(solution.factorial(9));     //362880
         System.out.println(solution.factorial(0));     //1
         System.out.println(solution.factorial(1));     //1
+        System.out.println(solution.factorial(14));     //1
     }
 
     public int factorial(int n) {
-        int result = 1;
-        for (int i = 1; i <= n; i++) {
-            result *= i;
+        if (n == 0 || n == 1) {
+            return 1;
         }
-        return result;
+        return n * factorial(n - 1);
     }
 }

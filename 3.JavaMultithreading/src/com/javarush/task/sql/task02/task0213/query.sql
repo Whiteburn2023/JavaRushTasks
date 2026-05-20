@@ -5,7 +5,6 @@ select students.is_full_time,
                then 'true'
            when is_full_time = 0
                then 'false'
-           else ''
         END
 from students
 ;

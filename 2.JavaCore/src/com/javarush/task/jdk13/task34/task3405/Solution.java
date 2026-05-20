@@ -23,7 +23,10 @@ public class Solution {
     public static Map<String, Object> getFields(Object object) throws Exception {
         Class<?> aClass = object.getClass();
         Field[] fields = aClass.getDeclaredFields();
-        System.out.println(Arrays.toString(fields));
+        Map<String, Object> map = new HashMap<>();
+        for (Field field : fields){
+            Modifier.isPrivate(field.getModifiers())
+        }
 
 
         return Map.of();

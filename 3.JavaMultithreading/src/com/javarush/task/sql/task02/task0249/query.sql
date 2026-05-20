@@ -3,7 +3,7 @@ select employee.department,
        employee.position,
        COUNT(*) AS total
 from employee
-where position = 'backend developer'
+-- where position = 'backend developer'
 group by department, position
-having total = 1
+having total = 1 AND position = 'backend developer'
 ;
