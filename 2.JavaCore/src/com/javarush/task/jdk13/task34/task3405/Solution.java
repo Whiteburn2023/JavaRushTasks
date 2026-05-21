@@ -25,7 +25,7 @@ public class Solution {
         Field[] fields = aClass.getDeclaredFields();
         Map<String, Object> map = new HashMap<>();
         for (Field field : fields){
-            Modifier.isPrivate(field.getModifiers())
+            Modifier.isPrivate(field.getModifiers());
         }
 
 
