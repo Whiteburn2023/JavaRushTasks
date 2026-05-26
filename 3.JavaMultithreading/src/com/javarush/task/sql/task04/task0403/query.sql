@@ -2,6 +2,6 @@
 SELECT
     a,
     b,
-    a % b AS remainder
+    a % b
 FROM math
 ;

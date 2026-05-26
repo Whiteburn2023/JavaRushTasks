@@ -1,6 +1,7 @@
 package com.javarush.task.jdk13.task34.task3409;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 
 public class Generator<T> {
 
@@ -12,6 +13,8 @@ public class Generator<T> {
 
     T newInstance() throws Exception {
         Constructor<T> declaredConstructor = (Constructor<T>) aClass.getDeclaredConstructors()[0];
-        return declaredConstructor.newInstance();
+        Field[] fields = aClass.getFields();
+
+        return declaredConstructor.newInstance(fields);
     }
 }

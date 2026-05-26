@@ -1,1 +1,6 @@
 -- Write your code here:
+SELECT
+    CURRENT_DATE,
+    CURRENT_DATE + INTERVAL 3 DAY,
+    CURRENT_DATE - INTERVAL 3 DAY
+;

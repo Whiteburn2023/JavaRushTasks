@@ -11,6 +11,12 @@ public class Solution {
     }
 
     public static void moveRing(char a, char b, char c, int numRings) {
-        //напишите тут ваш код
+        if (numRings == 1) {
+            System.out.println("перенести кольцо с " + a + " на " + b);
+        } else {
+            moveRing(a, c, b, numRings - 1);
+            System.out.println("перенести кольцо с " + a + " на " + b);
+            moveRing(c, b, a, numRings - 1);
+        }
     }
 }

@@ -9,16 +9,16 @@ WITH tempTable AS (
 SELECT films.title,
        films.genre,
        films.year_released,
-       films.grossed,
-       tempTable.averageGrossed,
-       tempTable2.averageYearReleased
+       films.grossed
+      -- tempTable.averageGrossed,
+      -- tempTable2.averageYearReleased
 FROM films, tempTable, tempTable2
 WHERE films.grossed > tempTable.averageGrossed
   AND films.year_released > tempTable2.averageYearReleased
 GROUP BY films.year_released,
          films.title,
          films.genre,
-         films.grossed,
-         tempTable.averageGrossed,
-         tempTable2.averageYearReleased
+         films.grossed
+        -- tempTable.averageGrossed,
+        -- tempTable2.averageYearReleased
 ;

@@ -10,7 +10,7 @@ public class Generator<T> {
 
     T newInstance() throws InstantiationException, IllegalAccessException {
 
-
         return type.newInstance();
+
     }
 }

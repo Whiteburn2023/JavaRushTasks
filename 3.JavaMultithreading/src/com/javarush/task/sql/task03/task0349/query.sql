@@ -7,8 +7,7 @@ SELECT film_directors.id,
        film_directors.full_name,
        film_directors.year_born,
        tempTable.averageDOB
-FROM film_directors
-    JOIN tempTable
+FROM film_directors, tempTable
 WHERE film_directors.year_born < tempTable.averageDOB
 ;
 
