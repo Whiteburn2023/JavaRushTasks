@@ -1,7 +1,6 @@
 package com.javarush.task.task18.task1825;
 
 import java.io.*;
-import java.nio.file.Paths;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -16,20 +15,18 @@ public class Solution {
             String string = "";
             Map<Integer, String> map = new TreeMap<>();
             while (!(string = bufferedReader.readLine()).equalsIgnoreCase("end")) {
-                int number = Integer.parseInt(string.substring(string.lastIndexOf('t') + 1));
-                map.put(number, string);
+                int numFile = Integer.parseInt(string.substring(string.lastIndexOf("t") + 1));
+                map.put(numFile, string);
             }
 
             for (String value : map.values()) {
-                String fileName = value.substring(0, value.lastIndexOf('.'));
-                try (
-                BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(value));
-                BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(fileName, true))) {
-                    while (bufferedInputStream.available() > 0){
-                        bufferedOutputStream.write(bufferedInputStream.read());
+                String fileName = value.substring(0, value.lastIndexOf("."));
+                try (BufferedInputStream reader = new BufferedInputStream(new FileInputStream(value));
+                     BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream(fileName, true))) {
+                    while (reader.available() > 0){
+                        writer.write(reader.read());
                     }
                 }
-
             }
         }
     }

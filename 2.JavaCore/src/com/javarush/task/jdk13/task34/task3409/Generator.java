@@ -12,9 +12,10 @@ public class Generator<T> {
     }
 
     T newInstance() throws Exception {
-        Constructor<T> declaredConstructor = (Constructor<T>) aClass.getDeclaredConstructors()[0];
-        Field[] fields = aClass.getFields();
+        Constructor<T> declaredConstructor = (Constructor<T>)aClass.getDeclaredConstructors()[0];
 
-        return declaredConstructor.newInstance(fields);
+        declaredConstructor.setAccessible(true);
+
+        return declaredConstructor.newInstance();
     }
 }

@@ -3,6 +3,7 @@ package com.javarush.task.jdk13.task34.task3406;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /* 
 Классные методы
@@ -14,7 +15,24 @@ public class Solution {
         print(getMethods(Set.of(Object.class, Math.class, Arrays.class)));
     }
 
-    public static Map<Class<?>, Set<String>> getMethods(Set<Class<?>> classes) {
+    public static Map<Class<?>, Set<String>> getMethods(Set<Class<?>> classes) throws Exception {
+        Map<Class<?>, Set<String>> collect = classes.stream()
+                .collect(Collectors.toMap(
+                        aClass -> aClass,
+                        aClass -> {
+                            Method[] declaredMethods = aClass.getDeclaredMethods();
+                            return Arrays.stream(declaredMethods)
+                                    .filter(method -> Modifier.isStatic(method.getModifiers()))
+                                    .map(method -> method.getName())
+                                    .collect(Collectors.toSet());
+                        }
+                ));
+                return collect;
+
+
+    }
+
+    public static Map<Class<?>, Set<String>> getMethods1(Set<Class<?>> classes) {
         Map<Class<?>, Set<String>> map = new HashMap<>();
 
         for (Class<?> aClass : classes) {
@@ -26,9 +44,7 @@ public class Solution {
                 }
             }
             map.put(aClass, set);
-
         }
-
         return map;
     }
 

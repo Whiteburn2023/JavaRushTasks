@@ -18,6 +18,19 @@ public class Solution {
 
     public static void reset(Object object) throws Exception {
         //напишите тут ваш код
+        Class<?> aClass = object.getClass();
+        Field[] fields = aClass.getDeclaredFields();
+
+        for (Field field : fields){
+            if(!Modifier.isStatic(field.getModifiers())){
+                if(Modifier.isPrivate(field.getModifiers())){
+                    if(!field.getType().isPrimitive()){
+                        field.setAccessible(true);
+                        field.set(object, null);
+                    }
+                }
+            }
+        }
 
     }
 }
