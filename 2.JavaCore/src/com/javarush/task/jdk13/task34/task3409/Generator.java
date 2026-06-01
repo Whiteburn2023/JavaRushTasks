@@ -11,11 +11,13 @@ public class Generator<T> {
         this.aClass = aClass;
     }
 
+    @SuppressWarnings("unchecked")
     T newInstance() throws Exception {
-        Constructor<T> declaredConstructor = (Constructor<T>)aClass.getDeclaredConstructors()[0];
+        Constructor<T> declaredConstructor = (Constructor<T>) aClass.getDeclaredConstructors()[0];
 
-        declaredConstructor.setAccessible(true);
+        int parameterCount = declaredConstructor.getParameterCount();
+        Object[] arrObject = new Object[parameterCount];
 
-        return declaredConstructor.newInstance();
+        return declaredConstructor.newInstance(arrObject);
     }
 }

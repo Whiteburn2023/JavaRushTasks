@@ -1,5 +1,6 @@
 -- Write your code here:
-INSERT INTO object (name, type, discoverer, discovery_date) VALUES
+INSERT INTO object (name, type, discoverer, discovery_date)
+VALUES
     ('2020 XL5', 'астероид', 'Pan-STARRS 1', '2020-12-12'),
     ('Moon', 'спутник Земли', null, null),
     ('Jupiter', 'планета', null,null),

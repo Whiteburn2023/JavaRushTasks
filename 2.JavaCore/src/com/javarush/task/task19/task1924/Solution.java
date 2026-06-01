@@ -42,8 +42,7 @@ public class Solution {
 //                String[] strings = result.replaceAll("\\p{Punct}", "").split(" ");
 
                 for (Map.Entry<Integer, String> entry : map.entrySet()) {
-                    result = result.replaceAll("\b" + entry.getKey(), "\b" + entry.getValue());
-                    break;
+                    result = result.replaceAll("\\b" + entry.getKey() + "\\b", entry.getValue());
 
 
 //                for (String str : strings) {

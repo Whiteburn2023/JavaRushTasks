@@ -1,5 +1,7 @@
 package com.javarush.task.jdk13.task34.task3408;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class Generator<T> {
 
     private Class<T> type;
@@ -8,9 +10,10 @@ public class Generator<T> {
         this.type = aClass;
     }
 
-    T newInstance() throws InstantiationException, IllegalAccessException {
+    T newInstance() throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
-        return type.newInstance();
+
+        return type.getDeclaredConstructor().newInstance();
 
     }
 }

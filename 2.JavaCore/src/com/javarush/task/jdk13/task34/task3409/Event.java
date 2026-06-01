@@ -8,12 +8,6 @@ public class Event {
     private String name;
     private Boolean isActive;
 
-    public Event() {
-        this.id = nextId++;
-        this.name = "Default name";
-        this.isActive = true;
-    }
-
     public Event(String name, Boolean isActive) {
         this.id = nextId++;
         this.name = name;

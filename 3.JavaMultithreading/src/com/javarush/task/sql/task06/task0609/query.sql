@@ -6,5 +6,5 @@ SELECT customers.street,
        customers.zip_code,
        customers.country
 FROM customers
-WHERE customers.country != 'Testostan'
+WHERE customers.country != '%Testostan%'
 ;

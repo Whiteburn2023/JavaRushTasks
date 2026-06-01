@@ -19,15 +19,13 @@ public class Solution {
         Map<Class<?>, Set<String>> collect = classes.stream()
                 .collect(Collectors.toMap(
                         aClass -> aClass,
-                        aClass -> {
-                            Method[] declaredMethods = aClass.getDeclaredMethods();
-                            return Arrays.stream(declaredMethods)
-                                    .filter(method -> Modifier.isStatic(method.getModifiers()))
-                                    .map(method -> method.getName())
-                                    .collect(Collectors.toSet());
-                        }
+                        aClass -> Arrays.stream(aClass.getDeclaredMethods())
+                                .filter(method -> Modifier.isStatic(method.getModifiers()))
+                                .map(method -> method.getName())
+                                .collect(Collectors.toSet())
+
                 ));
-                return collect;
+        return collect;
 
 
     }

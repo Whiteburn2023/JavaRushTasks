@@ -18,32 +18,24 @@ public class Solution {
     }
 
     public static Set<Type> getTypes(Type type) {
-        Set<Type> result = new HashSet<>();
-        collectTypes(type, result);
+        Set<Type> result = new LinkedHashSet<>();
+        if (type instanceof ParameterizedType paramType){
+            Type rawType = paramType.getRawType();
+            result.add(rawType);
+            Type[] actualTypeArguments = paramType.getActualTypeArguments();
+            for (Type actualTypeArgument : actualTypeArguments) {
+                Set<Type> types = getTypes(actualTypeArgument);
+                result.addAll(types);
+            }
+
+//            Arrays.stream(paramType.getActualTypeArguments())
+//                    .map(type1 -> Solution.getTypes(type1))
+//                    .forEach(set -> result.addAll(set));
+
+        } else {
+            result.add(type);
+        }
         return result;
     }
 
-    private static void collectTypes(Type type, Set<Type> result){
-        if (type == null || result.contains(type)){
-            return;
-        }
-
-        result.add(type);
-
-        if (type instanceof Class){
-            Class<?> clazz = (Class<?>) type;
-            TypeVariable<?>[] typeParams = clazz.getTypeParameters();
-            for (TypeVariable<?> tv : typeParams){
-                for (Type bound : tv.getBounds()){
-                    collectTypes(bound, result);
-                }
-            }
-        } else if (type instanceof ParameterizedType) {
-            ParameterizedType pt = (ParameterizedType) type;
-            collectTypes(pt.getRawType(),result);
-            for (Type arg : pt.getActualTypeArguments()){
-                collectTypes(arg,result);
-            }
-        }
-    }
 }
