@@ -7,14 +7,14 @@ import java.util.LinkedHashMap;
 Простой generics
 */
 
-public class Solution<T extends HashMap> {
-    private HashMap map;
+public class Solution<T extends HashMap<?,?>> {
+    private T map;
 
-    public Solution(HashMap map) {
+    public Solution(T map) {
         this.map = map;
     }
 
-    public HashMap getMap() {
+    public T getMap() {
         return map;
     }
 

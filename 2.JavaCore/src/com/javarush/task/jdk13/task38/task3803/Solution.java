@@ -4,38 +4,44 @@ package com.javarush.task.jdk13.task38.task3803;
 Обработка аннотаций
 */
 
-import java.lang.annotation.Annotation;
+import java.util.Arrays;
 
 public class Solution {
+
     public static void main(String[] args) {
         printFullyQualifiedNames(Solution.class);
         printFullyQualifiedNames(SomeTest.class);
 
         printValues(Solution.class);
         printValues(SomeTest.class);
+
     }
 
     public static <T> boolean printFullyQualifiedNames(Class<T> c) {
-        Annotation[] annotations = c.getAnnotations();
-        if (annotations.length == 0) {
-            return false;
-        } else {
-            for (Annotation annotation : annotations) {
-                System.out.println(annotation.annotationType().getSimpleName());
-            }
+        if (c.isAnnotationPresent(PrepareMyTest.class)) {
+            PrepareMyTest annotation = c.getAnnotation(PrepareMyTest.class);
+            String[] strings = annotation.fullyQualifiedNames();
+            System.out.println(Arrays.toString(strings));
             return true;
         }
+        return false;
+
     }
 
     public static <T> boolean printValues(Class<T> c) {
-        Annotation[] annotations = c.getAnnotations();
-        if (annotations.length == 0) {
-            return false;
-        } else {
-            for (Annotation annotation : annotations) {
-                System.out.println(annotation.annotationType().getSimpleName());
-            }
+        if (c.isAnnotationPresent(PrepareMyTest.class)){
+            PrepareMyTest annotation = c.getAnnotation(PrepareMyTest.class);
+            Class<?>[] value = annotation.value();
+//            for (Class val : value){
+//                System.out.println(val.getSimpleName());
+//            }
+            Arrays.stream(value)
+                    .map(Class::getSimpleName)
+                    .forEach(System.out::println);
+
             return true;
         }
+        return false;
+
     }
 }
