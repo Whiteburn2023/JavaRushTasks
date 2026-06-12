@@ -18,9 +18,9 @@ public class Solution {
 
             while (results.next()){
                 String name = results.getString("name");
-                float weight = results.getFloat("weight");
+                Float weight = results.getFloat("weight");
                 Date birthday = results.getDate("birthday");
-                long inn = results.getLong("inn");
+                Long inn = results.getLong("inn");
 
                 System.out.println(name + " " + weight + " " + birthday + " " + inn + "\t");
             }

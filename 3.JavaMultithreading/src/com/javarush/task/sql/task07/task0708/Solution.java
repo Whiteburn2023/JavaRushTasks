@@ -17,10 +17,11 @@ public class Solution {
              Statement statement = connection.createStatement()) {
             ResultSet results = statement.executeQuery("SELECT * FROM employee");
 
-            while (results.next()){
+            while (results.next()) {
                 String name = results.getString("name");
-                Timestamp created = results.getTimestamp("created");
-                LocalDateTime localDateTime = created.toLocalDateTime();
+//                Timestamp created = results.getTimestamp("created");
+//                LocalDateTime localDateTime = created.toLocalDateTime();
+                LocalDateTime localDateTime = results.getObject("created", LocalDateTime.class);
 
                 System.out.println(name + " " + localDateTime + "\t");
             }

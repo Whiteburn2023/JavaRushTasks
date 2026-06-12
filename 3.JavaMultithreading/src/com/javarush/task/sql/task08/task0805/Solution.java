@@ -3,6 +3,8 @@ package com.javarush.task.sql.task08.task0805;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Set;
 
 /* 
@@ -20,10 +22,20 @@ public class Solution {
                 new Employee("Sasha", 40, "dev"));
         String sql = "insert into employee (name, age, smth) values (?, ?, ?)";
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+        try (Connection connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/test", "root", "root");
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            //напишите тут ваш код
+            for (Employee employee : employees) {
+                statement.setInt(1, employee.getId());
+                statement.setString(2,employee.getName());
+                statement.setInt(3, employee.getAge());
+                statement.setString(4,employee.getSmth());
+                statement.addBatch();
+            }
+            int[] results = statement.executeBatch();
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

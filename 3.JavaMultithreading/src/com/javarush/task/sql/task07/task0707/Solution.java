@@ -17,9 +17,12 @@ public class Solution {
              Statement statement = connection.createStatement()) {
             ResultSet results = statement.executeQuery("SELECT * FROM employee");
 
-            while (results.next()){
+            while (results.next()) {
                 String name = results.getString("name");
-                long weight = results.getLong("weight");
+                Long weight = results.getLong("weight");
+                if (results.wasNull()) {
+                    weight = null;
+                }
                 System.out.print(name + " " + weight + "\t");
             }
 

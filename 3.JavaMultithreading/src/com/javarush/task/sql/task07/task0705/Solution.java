@@ -15,17 +15,10 @@ public class Solution {
     public static void main(String[] args) throws Exception {
         try (Connection connection = DriverManager.getConnection(URL, USER_NAME,PASSWORD);
              Statement statement = connection.createStatement()){
-            ResultSet results = statement.executeQuery("SELECT age FROM employee");
-
-            int minAge = Integer.MAX_VALUE;
+            ResultSet results = statement.executeQuery("SELECT DISTINCT MIN(age) as a FROM employee");
             while (results.next()){
-                int age = results.getInt("age");
-                if (minAge > age){
-                    minAge = age;
-                }
+                System.out.println(results.getInt("a"));
             }
-            System.out.println(minAge);
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
