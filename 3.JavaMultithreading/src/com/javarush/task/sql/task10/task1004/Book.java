@@ -2,17 +2,29 @@ package com.javarush.task.sql.task10.task1004;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "book")
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "title")
     private String title;
 
+    @JoinColumn(name = "author_id")
+    @ManyToOne
     private Author author;
 
+    @JoinColumn(name = "publisher_id")
+    @ManyToOne
     private Publisher publisher;
 
+    @Column(name = "publication_year")
     private Integer publicationYear;
 
+    @Column(name = "isbn")
     private Long isbn;
 
     public Integer getId() {

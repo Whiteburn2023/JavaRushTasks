@@ -1,10 +1,9 @@
 package com.javarush.task.sql.task10.task1010;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /* 
@@ -18,7 +17,13 @@ public class Solution {
     }
 
     public static List<Employee> getAll() {
-        //напишите тут ваш код
-        return Collections.emptyList();
+        List<Employee> list;
+        SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
+        try (Session session = sessionFactory.openSession()){
+            String sql = "SELECT * FROM employee e ORDER BY e.id ASC";
+            NativeQuery<Employee> nativeQuery = session.createNativeQuery(sql, Employee.class);
+            list = nativeQuery.list();
+        }
+        return list;
     }
 }

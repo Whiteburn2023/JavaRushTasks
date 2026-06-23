@@ -1,5 +1,5 @@
 package com.javarush.task.sql.task10.task1008;
-/**
+
 import jakarta.persistence.*;
 
 @Entity
@@ -57,4 +57,3 @@ public class Employee {
                 '}';
     }
 }
-*/

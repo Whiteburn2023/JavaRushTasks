@@ -1,6 +1,7 @@
 package com.javarush.task.sql.task10.task1009;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 /* 
@@ -15,12 +16,20 @@ public class Solution {
     }
 
     public static Long getSalaryFund() {
-        //напишите тут ваш код
-        return 0L;
+        SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
+        try (Session session = sessionFactory.openSession()){
+            String hql = "select SUM(e.salary) from Employee e";
+            Long result = session.createQuery(hql, Long.class).uniqueResult();
+            return result != null ? result : 0L;
+        }
     }
 
     public static Double getAverageAge() {
-        //напишите тут ваш код
-        return 0.0;
+        SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
+        try (Session session = sessionFactory.openSession()){
+            String hql = "select AVG(e.age) from Employee e";
+            Double result = session.createQuery(hql, Double.class).uniqueResult();
+            return result != null ? result : 0.0;
+        }
     }
 }

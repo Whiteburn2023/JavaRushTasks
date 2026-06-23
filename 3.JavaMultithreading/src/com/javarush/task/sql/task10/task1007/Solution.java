@@ -1,9 +1,13 @@
 package com.javarush.task.sql.task10.task1007;
 /**
+ * import org.hibernate.Session;
+ * import org.hibernate.query.Query;
+ */
+
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-*/
-import java.util.Collections;
+
 import java.util.List;
 
 /* 
@@ -17,7 +21,15 @@ public class Solution {
     }
 
     public static List<Employee> getIn(List<String> in) {
-        //напишите тут ваш код
-        return Collections.emptyList();
+        List<Employee> list;
+        SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "from Employee e where e.smth in (:IN) order by e.age asc";
+            Query<Employee> query = session.createQuery(hql, Employee.class);
+            query.setParameter("IN", in);
+            list = query.list();
+        }
+
+        return list;
     }
 }
