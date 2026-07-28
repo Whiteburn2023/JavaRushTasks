@@ -4,8 +4,8 @@ package com.javarush.task.jdk13.task43.task4303;
 Нам шаблоны не нужны
 */
 
-//import org.apache.commons.lang3.builder.StandardToStringStyle;
-//import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.StandardToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Person {
     private String name;
@@ -25,7 +25,14 @@ public class Person {
     @Override
     public String toString() {
         //напишите тут ваш код
+        StandardToStringStyle standardToStringStyle = new StandardToStringStyle();
+        standardToStringStyle.setUseClassName(false);
+        standardToStringStyle.setUseIdentityHashCode(false);
+        standardToStringStyle.setContentStart("This persons ");
+        standardToStringStyle.setFieldNameValueSeparator(" is ");
+        standardToStringStyle.setFieldSeparator("; ");
+        standardToStringStyle.setContentEnd(".");
 
-        return null;
+        return ToStringBuilder.reflectionToString(this, standardToStringStyle, true);
     }
 }
