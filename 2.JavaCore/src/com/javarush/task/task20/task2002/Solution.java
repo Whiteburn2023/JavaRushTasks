@@ -1,6 +1,14 @@
 package com.javarush.task.task20.task2002;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,11 +52,45 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            try (PrintWriter printWriter = new PrintWriter(outputStream)) {
+                printWriter.println(users.size());
+                if (!users.isEmpty()) {
+                    for (User user : users) {
+                        printWriter.println(user.getFirstName());
+                        printWriter.println(user.getLastName());
+                        printWriter.println(user.getBirthDate().getTime());
+                        printWriter.println(user.isMale());
+                        printWriter.println(user.getCountry().name());
+                        printWriter.flush();
+                    }
+                }
+            }
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+                int count = Integer.parseInt(bufferedReader.readLine());
+                List<User> loadedUsers = new ArrayList<>();
+                for (int i = 0; i < count; i++) {
+                    String firstName = bufferedReader.readLine();
+                    String lastName = bufferedReader.readLine();
+                    long birthMillis = Long.parseLong(bufferedReader.readLine());
+                    boolean isMale = Boolean.parseBoolean(bufferedReader.readLine());
+                    User.Country country = User.Country.valueOf(bufferedReader.readLine());
+
+                    User user = new User();
+                    user.setFirstName(firstName);
+                    user.setLastName(lastName);
+                    user.setBirthDate(new Date(birthMillis));
+                    user.setMale(isMale);
+                    user.setCountry(country);
+                    loadedUsers.add(user);
+                }
+                this.users = loadedUsers;
+            }
         }
+
 
         @Override
         public boolean equals(Object o) {
