@@ -5,6 +5,8 @@ package com.javarush.task.jdk13.task43.task4305;
 */
 
 //import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Scanner;
 
 public class Solution {
@@ -18,7 +20,8 @@ public class Solution {
 
     public static boolean helloWorldChecker(String s) {
         //напишите тут ваш код
+        boolean contains = StringUtils.containsOnly(s,  "Helo Wrd!");
 
-        return false;
+        return contains;
     }
 }

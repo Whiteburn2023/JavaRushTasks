@@ -60,7 +60,7 @@ public class Solution {
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
             try (DataInputStream dataInputStream = new DataInputStream(inputStream)){
-                ClassWithStatic.staticString = dataInputStream.readUTF();
+                staticString = dataInputStream.readUTF();
                 this.i = dataInputStream.readInt();
                 this.j = dataInputStream.readInt();
             }

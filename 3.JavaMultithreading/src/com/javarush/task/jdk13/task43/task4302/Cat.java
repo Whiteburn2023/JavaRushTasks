@@ -30,7 +30,6 @@ public class Cat {
 
     @Override
     public int hashCode() {
-
         return new HashCodeBuilder()
                 .append(age)
                 .append(breed)
