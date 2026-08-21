@@ -46,27 +46,6 @@ public class Solution implements Serializable, AutoCloseable {
     }
 
     public static void main(String[] args) throws Exception {
-        Solution solution = new Solution("3.txt");
-        solution.writeObject("First line");
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-        objectOutputStream.writeObject(solution);
-        objectOutputStream.close();
-
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
-        ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-        Solution solution1 = (Solution) objectInputStream.readObject();
-        objectInputStream.close();
-
-        solution1.writeObject("Second line");
-        solution1.close();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader("3.txt"))){
-            String line;
-            while ((line = reader.readLine()) != null){
-                System.out.println(line);
-            }
-        }
     }
 }
